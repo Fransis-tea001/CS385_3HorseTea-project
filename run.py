@@ -6,8 +6,13 @@ import shutil
 
 if __name__ == "__main__":
     input_file = input("Enter File Path: ")
+    try:
+        shutil.copyfile(input_file, "../CS385_3HorseTea-project/data/raw data/data_raw.csv")
+    except:
+        print("File not found exception")
+        
     print("Running pipeline...")
-    shutil.copyfile(input_file, "../CS385_3HorseTea-project/data/raw data/data_raw.csv")
+    
     print("[START] preposessing")
     preprocessing()
     print("[START] Training model")
