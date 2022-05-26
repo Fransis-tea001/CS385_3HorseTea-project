@@ -6,13 +6,15 @@ import shutil
 
 if __name__ == "__main__":
     input_file = input("Enter File Path: ")
+    print("Running pipeline...")
     shutil.copyfile(input_file, "../CS385_3HorseTea-project/data/raw data/data_raw.csv")
-
+    print("[START] preposessing")
     preprocessing()
-    kmeans, X_kmeans = k_means_modelling()
-    agg_ward, X_agg_ward = agglomerative_modelling('ward')
-    agg_complete, X_agg_complete = agglomerative_modelling('complete')
-    agg_average, X_agg_average = agglomerative_modelling('average')
-
+    print("[START] Training model")
+    kmeans = k_means_modelling()
+    agg_ward = agglomerative_modelling('ward')
+    agg_complete = agglomerative_modelling('complete')
+    agg_average = agglomerative_modelling('average')
+    print("[FINISH TRAINING]")
     evaluate(kmeans, agg_ward, agg_complete, agg_average)
 

@@ -11,8 +11,7 @@ def k_means_modelling():
   X_norm = scaling(X)
 
   kmeans = k_means(X_norm)
-  X_kmeans = X.assign(cluster=kmeans.labels_)
-  return kmeans, X_kmeans
+  return kmeans
 
 def scaling(df):
   df_log = np.log1p(df)

@@ -1,0 +1,25 @@
+Model : [k-Means]
+Calinski-Harabasz score = 0.4437
+Silhouette score = 481.0485
+Davies-Bouldin score = 0.6288
+
+------------------------------
+Model : [Agglomerative (Ward)]
+Calinski-Harabasz score = 0.4157
+Silhouette score = 364.3767
+Davies-Bouldin score = 0.6137
+
+------------------------------
+Model : [Agglomerative (Complete)]
+Calinski-Harabasz score = 0.2972
+Silhouette score = 180.7400
+Davies-Bouldin score = 0.7358
+
+------------------------------
+Model : [Agglomerative (Average)]
+Calinski-Harabasz score = 0.3698
+Silhouette score = 197.9565
+Davies-Bouldin score = 0.6045
+
+------------------------------
+choose : k-Means model

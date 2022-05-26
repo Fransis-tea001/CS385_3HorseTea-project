@@ -11,8 +11,7 @@ def agglomerative_modelling(lk):
   X_norm = scaling(X)
 
   agg = agglomerative(X_norm, lk)
-  X_agg = X.assign(cluster=agg.labels_)
-  return agg, X_agg
+  return agg
 
 def scaling(df):
   df_log = np.log1p(df)
