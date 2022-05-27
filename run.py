@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings("ignore")
+
 from src.scripts.preparation import preprocessing
 from src.scripts.modelling.k_means_model import k_means_modelling
 from src.scripts.modelling.aggmolative_model import agglomerative_modelling
