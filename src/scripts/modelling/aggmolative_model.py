@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import KMeans, AgglomerativeClustering
+from sklearn.cluster import MiniBatchKMeans, AgglomerativeClustering
 import kneed
 
 def agglomerative_modelling(lk):
@@ -22,7 +22,7 @@ def scaling(df):
 def agglomerative(X, lk):
   sse = {}
   for k in range(1, 21):
-    kmeans = KMeans(n_clusters=k, random_state=0).fit(X)
+    kmeans = MiniBatchKMeans(n_clusters=k, random_state=0).fit(X)
     sse[k] = kmeans.inertia_
 
   kn = kneed.KneeLocator(

@@ -37,8 +37,8 @@ def save_log(model, m_names, best_model, X):
     with open('..\CS385_3HorseTea-project\logs\Model_out_log.txt', 'w') as f:
         for i in range(len(model)):
             f.write("Model : [{}]\n".format(m_names[i]))
-            f.write("Calinski-Harabasz score = {:.4f}\n".format(silhouette_score(X, model[i].labels_)))
-            f.write("Silhouette score = {:.4f}\n".format(calinski_harabasz_score(X, model[i].labels_)))
+            f.write("Silhouette score = {:.4f}\n".format(silhouette_score(X, model[i].labels_)))
+            f.write("Calinski-Harabasz score = {:.4f}\n".format(calinski_harabasz_score(X, model[i].labels_)))
             f.write("Davies-Bouldin score = {:.4f}\n".format(davies_bouldin_score(X, model[i].labels_)))
             f.write("\n")
             f.write("------------------------------\n")

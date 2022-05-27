@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import KMeans
+from sklearn.cluster import MiniBatchKMeans
 import kneed
 
 def k_means_modelling():
@@ -22,7 +22,7 @@ def scaling(df):
 def k_means(X):
   sse = {}
   for k in range(1, 21):
-    kmeans = KMeans(n_clusters=k, random_state=0).fit(X)
+    kmeans = MiniBatchKMeans(n_clusters=k, random_state=0).fit(X)
     sse[k] = kmeans.inertia_
 
   kn = kneed.KneeLocator(
@@ -31,5 +31,5 @@ def k_means(X):
     curve='convex', 
     direction='decreasing')
   
-  kmeans = KMeans(n_clusters=kn.knee, random_state=0).fit(X)
+  kmeans = MiniBatchKMeans(n_clusters=kn.knee, random_state=0).fit(X)
   return kmeans
