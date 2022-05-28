@@ -17,12 +17,16 @@ if __name__ == "__main__":
         print("[START] preposessing")
         preprocessing()
         print("[START] Training model")
-        kmeans = k_means_modelling()
-        agg_ward = agglomerative_modelling('ward')
-        agg_complete = agglomerative_modelling('complete')
-        agg_average = agglomerative_modelling('average')
+        kmeans, X_kmeans = k_means_modelling()
+        agg_ward, X_agg_ward = agglomerative_modelling('ward')
+        agg_complete, X_agg_complete = agglomerative_modelling('complete')
+        agg_average, X_agg_average = agglomerative_modelling('average')
         print("[FINISH TRAINING]")
-        evaluate(kmeans, agg_ward, agg_complete, agg_average)
+        
+        model = [kmeans, agg_ward, agg_complete, agg_average]
+        model_result = [X_kmeans, X_agg_ward, X_agg_complete, X_agg_average]
+        model_names = ['k-Means', 'Agglomerative (Ward)', 'Agglomerative (Complete)', 'Agglomerative (Average)']
+        evaluate(model, model_result, model_names)
     except:
         print("File not found exception")
 
