@@ -44,7 +44,7 @@ def df_cleansing(df):
 
   # Drop non-meaning columns
   df_clean = df_clean.drop(['Customer_Name', 'ZIP', 'Address', 'Tel'], axis=1)
-
+  df_clean = df_clean.dropna(axis=1)
   # Convert Order_ID and Customer_ID to String
   df_clean['Order_ID'], df_clean['Customer_ID'] = df_clean['Order_ID'].astype('str'), df_clean['Customer_ID'].astype('str')
   df_clean['Order_Date'] = pd.to_datetime(df_clean['Order_Date'])
@@ -59,9 +59,10 @@ def df_cleansing(df):
   return df_clean
 
 def data_wagling(df):
-  df_r = calculate_recency(df)
-  df_rf = df_r.merge(calculate_frequency(df), on='Customer_ID')
-  df_rfm = df_rf.merge(calculate_monetary(df), on='Customer_ID')
+  df_copy = df.copy()
+  df_r = calculate_recency(df_copy)
+  df_rf = df_r.merge(calculate_frequency(df_copy), on='Customer_ID')
+  df_rfm = df_rf.merge(calculate_monetary(df_copy), on='Customer_ID')
 
   return df_rfm
 
@@ -74,7 +75,7 @@ def calculate_recency(df):
 
 def calculate_frequency(df):
   df = df.drop_duplicates().groupby(by=['Customer_ID'], as_index=False)['date'].count()
-  df.columns = ['Customer_ID', 'frequency']
+  df = df.rename(columns={'date': 'frequency'})
   return df
 
 def calculate_monetary(df):

@@ -45,6 +45,12 @@ def save_log(model, m_names, best_model, X):
         f.write("choose : {} model\n".format(best_model[1]))
 
 def save_outputs(X, X_norm, model):
+    df_ori = pd.read_csv("../CS385_3HorseTea-project/data/raw data/data_raw.csv")
+    df_clean = pd.read_csv("../CS385_3HorseTea-project/data/processed data/Customer_clean.csv")
+
     best_model = model.fit(X_norm)
     X_best_model = X.assign(cluster=best_model.labels_)
-    X_best_model.to_csv('..\CS385_3HorseTea-project\outputs\Customer_seg_result.csv', index=False)
+    X_best_model = X_best_model[['Customer_ID', 'cluster']]
+    df_merge = df_ori.merge(df_clean, on='Customer_ID')
+    df_merge = df_merge.merge(X_best_model, on='Customer_ID')
+    df_merge.to_csv('..\CS385_3HorseTea-project\outputs\Customer_segmentation.csv', index=False)
